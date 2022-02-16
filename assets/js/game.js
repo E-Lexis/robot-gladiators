@@ -114,8 +114,11 @@ var endGame = function () {
     }
 };
 
+<<<<<<< HEAD
 var shop = function () {
     console.log("entered the shop");
 };
 
+=======
+>>>>>>> feature/initial-game
 starGame();
