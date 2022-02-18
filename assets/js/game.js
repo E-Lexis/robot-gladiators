@@ -9,8 +9,15 @@ playerMoney = 10;
 //    * Defeat each enemy-robot
 // "LOSE" - Player robot's health is zero or less
 
+
+var randomNumber = function (min, max) {
+    var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+    return value;
+};
+
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
-var enemyHealth = 50;
+var enemyHealth = randomNumber(40,60);
 var enemyAttack = 12;
 
 //Alert player that round is starting
@@ -29,14 +36,17 @@ var fight = function (enemyName) {
             if (confirmSkip) {
                 window.alert(playerName + " has decided to skip this fight. Goodbye!");
                 // subtract money from playerMoney for skipping
-                playerMoney = playerMoney - 10;
+                playerMoney = Math.max(0, playerMoney - 10);
                 console.log("playerMoney", playerMoney);
                 break;
             }
 
         }
         
-        enemyHealth = enemyHealth - playerAttack;
+        var damage = randomNumber(playerAttack - 3, playerAttack);
+
+        enemyHealth = Math.max(0, enemyHealth - damage);
+
         console.log(
             playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
         );
@@ -54,7 +64,7 @@ var fight = function (enemyName) {
         }
 
         // remove player's health by subtracting the amount set in the enemyAttack variable
-        playerHealth = playerHealth - enemyAttack;
+        playerHealth = Math.max(0, playerHealth - enemyAttack);
         console.log(
             enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
         );
@@ -85,9 +95,7 @@ var startGame = function () {
             var pickedEnemyName = enemyNames[i];
             enemyHealth = 50;
             fight(pickedEnemyName);
-<<<<<<< HEAD
-=======
-            if (playerHealth > 0 && i < enemyNames.length - 1) {
+   if (playerHealth > 0 && i < enemyNames.length - 1) {
                 // ask if player wants to use the store before next round
                 var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
 
@@ -97,7 +105,6 @@ var startGame = function () {
                 }
 
             }
->>>>>>> feature/shop
         } else {
             window.alert("You have lost your robot in battle! Game Over!");
             break;
@@ -127,15 +134,12 @@ var endGame = function () {
     }
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 var shop = function () {
     console.log("entered the shop");
 };
 
-=======
->>>>>>> feature/initial-game
-=======
+
 var shop = function () {
     console.log("entered the shop");
 
@@ -188,5 +192,4 @@ var shop = function () {
 
 };
 
->>>>>>> feature/shop
 starGame();
